@@ -31,19 +31,22 @@ let projects = [
   {
     image: 'textures/project-spaze.webp',
     url: 'https://www.spaze.social/',
+    github: 'https://github.com/yourusername/spaze',
+    demo: 'https://www.spaze.social/demo',
   },
   {
     image: 'textures/project-myteachers.jpg',
     url: 'https://myteachers.com.au/',
+    github: 'https://github.com/yourusername/myteachers',
+    demo: 'https://myteachers.com.au/demo',
   },
   {
     image: 'textures/project-wholesale.jpg',
     url: 'https://wholesale.com.np/',
+    github: 'https://github.com/yourusername/wholesale',
+    demo: 'https://wholesale.com.np/demo',
   },
-  {
-    image: 'textures/project-pelotero.jpg',
-    url: 'https://www.peloterosenlaweb.com/',
-  },
+  
 ];
 let aboutCameraPos = {
   x: 0.12,
@@ -639,7 +642,10 @@ function projectsMenuListener() {
     projectPlane.name = 'project';
     projectPlane.userData = {
       url: project.url,
+      github: project.github,
+      demo: project.demo,
     };
+    
     projectPlane.position.set(
       0.3 + i * 0.8 * colIndex,
       1 - rowIndex * 0.5,
@@ -736,6 +742,44 @@ function init3DWorldClickListeners() {
     });
   });
 }
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+// Listen for pointer/mouse clicks
+window.addEventListener('pointerdown', onPointerDown, false);
+
+function onPointerDown(event) {
+  event.preventDefault();
+
+  // Convert mouse coords to [-1, 1] range for raycaster
+  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+  // Update raycaster with camera and mouse
+  raycaster.setFromCamera(mouse, camera);
+
+  // Check what objects the ray intersects
+  const intersects = raycaster.intersectObjects(scene.children);
+
+  if (intersects.length > 0) {
+    // Grab the first (closest) intersected object
+    const intersectedObject = intersects[0].object;
+
+    // Check if it's one of our project planes
+    if (intersectedObject.name === 'project') {
+      const { github, demo } = intersectedObject.userData;
+      
+      // Encode the URLs to safely pass them as query params
+      const linkPageUrl = `links.html?github=${encodeURIComponent(github)}&demo=${encodeURIComponent(demo)}`;
+      
+      // Open that single page in a new tab
+      window.open(linkPageUrl, '_blank');
+    }
+    
+  }
+}
+
 
 // RESPONSIVE
 function initResponsive(roomScene) {
