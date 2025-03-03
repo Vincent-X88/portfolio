@@ -28,24 +28,25 @@ let clipNames = [
   'fan_rotation.004',
 ];
 let projects = [
-  {
-    image: 'textures/project-spaze.webp',
-    url: 'https://www.spaze.social/',
-    github: 'https://github.com/yourusername/spaze',
-    demo: 'https://www.spaze.social/demo',
+ {
+    image: 'textures/zeropoint.png',
+    url: 'https://github.com/Vincent-X88/Zero_Point',
+    github: 'https://github.com/Vincent-X88/Zero_Point',
+    demo: 'https://github.com/Vincent-X88/Zero_Point',
   },
   {
-    image: 'textures/project-myteachers.jpg',
-    url: 'https://myteachers.com.au/',
-    github: 'https://github.com/yourusername/myteachers',
-    demo: 'https://myteachers.com.au/demo',
+    image: 'textures/bigjimgrills.png',
+    url: 'https://github.com/Vincent-X88/BigJimGrills',
+    github: 'https://github.com/Vincent-X88/BigJimGrills',
+    demo: 'https://youtu.be/8F2p_PhdriM',
   },
   {
-    image: 'textures/project-wholesale.jpg',
-    url: 'https://wholesale.com.np/',
-    github: 'https://github.com/yourusername/wholesale',
-    demo: 'https://wholesale.com.np/demo',
+    image: 'textures/reavaya.png',
+    url: 'https://github.com/Vincent-X88/reavaya',
+    github: 'https://github.com/Vincent-X88/reavaya',
+    demo: 'https://youtu.be/plIMUrjWn_8',
   },
+ 
   
 ];
 let aboutCameraPos = {
